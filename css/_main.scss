@@ -1,0 +1,108 @@
+//默认字体
+$baseFontSize: 32px !default;
+//是否调试模式
+$if_debug: false;
+//是否是ie
+$if_ie: true;
+//边框粗细
+$border_px: 1px;
+
+
+//如果是debug,状态就是可见的
+.debug_show{
+  @if $if_debug {
+    display: block;
+  }@else {
+    display: none;
+  }
+}
+// pixels to rem
+@function pxToRem($px) {
+   $temp: $px / $baseFontSize ;
+   @if $temp==0{
+       //如果是0的话还是0
+       $temp:0;
+   }@else if $temp<-0.001 {
+       //如果是负数，就不变
+       
+   } @else if $temp<0.062 {
+       //解决底分辨率手机看不到边框问题
+       $temp:0.0618760;
+   } 
+  @return $temp* 1rem;
+}
+
+// pixels to em 
+@function pxToEm($px) {
+   $temp: $px / $baseFontSize ;
+   @if $temp==0{
+       //如果是0的话还是0
+       $temp:0;
+   }@else if $temp<0.062 {
+       //解决底分辨率手机看不到边框问题
+       $temp:0.0618760;
+   } 
+  @return $temp* 1em;
+}
+
+//全局清除边距
+@mixin  clear-side{
+  * { margin:0; padding:0; outline:none; }
+  *:not(input,textarea) { -webkit-touch-callout:inherit; -webkit-user-select:auto; -webkit-text-size-adjust: none;}
+  ul, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, form {padding: 0;margin: 0;}
+  img{border:none;display: block}
+}
+//PC居中1000px显示
+@mixin main-center{
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+//透明度
+@mixin opacity($opacity:50) {
+  opacity: $opacity / 100;
+  filter: alpha(opacity=$opacity);
+}
+
+
+//底部边框
+@mixin border-bottom($size: 1px,$style:solid,$color:black) {
+    @if $size==1px{
+        //针对1px不同分辨率上面展示2px的解决方法
+         border-width: 0px 0px pxToRem($size);
+    }@else{
+        border-bottom:pxToRem($size) $style $color;
+    }
+}
+//transform 属性
+@mixin transform($transformProp){
+  transform:$transformProp;
+  -ms-transform:$transformProp; /* Internet Explorer */
+  -moz-transform:$transformProp; /* Firefox */
+  -webkit-transform:$transformProp; /* Safari 和 Chrome */
+  -o-transform:$transformProp; /* Opera */
+}
+//transition 属性
+@mixin transition($transitionProp){
+  transition:$transitionProp;
+  -ms-transition:$transitionProp; /* Internet Explorer */
+  -moz-transition:$transitionProp; /* Firefox */
+  -webkit-transition:$transitionProp; /* Safari 和 Chrome */
+  -o-transition:$transitionProp; /* Opera */
+}
+//动画声明
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+

@@ -1,0 +1,366 @@
+@import "../main";
+@include  clear-side;
+html {
+  font-size: 62.5%;
+  font-family: "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "Î¢ÈíÑÅºÚ", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  width: 100%;
+  height: 100%;
+}
+body{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right:0;
+  left: 0;
+  font-size:12px;
+  width: 1920px;
+  height: 100%;
+  overflow: hidden;
+  background: url("../../images/bg.png") center center no-repeat;
+  background-size: cover;
+  .hide{
+    display: none;
+  }
+  .opc{
+    opacity: 0;
+  }
+  #main_title{
+    position: relative;
+    margin: 60px 0 0 96px;
+    //  ÌâÄ¿
+    .title0_img{
+      position: absolute;
+      min-width: 20%;
+    }
+    //  ¶¥²¿¹âÏß
+    .light1{
+      position: absolute;
+      top: -64px;
+      left: 13%;
+      @include animation(light1 2s infinite);
+      animation-direction:alternate;
+      -webkit-animation-direction:alternate;
+      @include keyframes(light1){
+        0% {left:-10%;}
+        100% {left:18%;}
+      }
+    }
+    .light2{
+      position: absolute;
+      top: 20px;
+      left: -13%;
+      @include animation(light2 2s infinite);
+      animation-direction:alternate;
+      -webkit-animation-direction:alternate;
+      @include keyframes(light2){
+        0% {left:18%;}
+        100% {left:-10%;}
+      }
+    }
+  }
+  //  ÌáÊ¾ÎÄ×Ö
+  .tips{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 999;
+    text-align: center;
+    //Ê§°ÜÌáÊ¾
+    .tips_fail{
+      animation:tips 100ms ease-in-out 8;
+      @include keyframes(tips){
+        0% {transform: translate(0px, 0px) rotate(0deg)}
+        20% {transform: translate(1.5px, -2.5px) rotate(-1.5deg)}
+        40% {transform: translate(-2.5px, 0.5px) rotate(-0.5deg)}
+      }
+    }
+    //³É¹¦ÌáÊ¾
+    .tips_success{
+      @include animation(tips1 1.2s ease-in-out 1);
+      @include keyframes(tips1){
+        0% {opacity: 0.5}
+        20% {opacity: 0}
+        40% {opacity: 1}
+      }
+    }
+    .tips_img{
+      margin: 0 auto;
+    }
+    span{
+      position: relative;
+      top: 110px;
+      font-family: "Î¢ÈíÑÅºÚ";
+      font-size: 36px;
+      color: #06e0e0;
+      line-height: 36px;
+    }
+  }
+  //ÊÓÆµÎ»ÖÃ
+  .photo_frame{
+    position: relative;
+    width: 100%;
+    height: 695px;
+    top: 105px;
+  }
+  //×ó±ßµÄÍ¼
+  .left_frame{
+    position: relative;
+    width: 1030px;
+    height: 735px;
+    overflow: hidden;
+    background: url("../../images/photo-frame01.png") no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+    .photo_content{
+      padding: 30px 0px;
+      position: absolute;
+      width: 1030px;
+      height: 795px;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+  }
+  //µ÷ÓÃÉãÏñÍ·
+  .photo_video{
+    position:relative;
+    left: 0px;
+    top:0px;
+    right:0px;
+    bottom: 0px;
+    width: 0px;
+    height: 0px;
+    z-index: -21;
+  }
+  .photo_canvas{
+    position:relative;
+    left: 26px;
+    top:0px;
+    right:0px;
+    bottom: 0px;
+    width: 968px;
+    height: 570px;
+    margin: 0 auto;
+    z-index: -20;
+  }
+  //É¨Ãè¹âÏß
+  .light_face{
+    width: 100%;
+    position: relative;
+    @include animation(lightFace 3.5s ease-in-out infinite);
+    @include keyframes(lightFace){
+      0% {top:2%;}
+      100% {top:79%;}
+    }
+  }
+
+  //  ÕÕÆ¬ËõÐ¡
+  .shrink_pic{
+    @include animation(shrink 1.5s ease 1);
+    @include keyframes(shrink){
+      0% {width: 50%;height: 695px;left: 0px;}
+      10% {width: 41%;height: 561px;top: 68px;left: 0px;}
+      100% {width: 41%;height: 561px;top: 68px;left: -462px;}
+    }
+    width: 41%;
+    height: 561px;
+    top: 68px;
+    left: -462px;
+  }
+  //  ×ó±ßµÄ¹÷¹÷
+  .left_gun{
+    position: fixed;
+    bottom: 40%;
+    margin-left: -499px;
+    z-index: -99;
+    img{
+      width: 104%;
+    }
+  }
+  //×ó±ßµÄ¹÷¶¯»­
+  .gun_ani{
+    @include animation(gun 0.6s ease-in-out 1);
+    @include keyframes(gun){
+      0%{margin-left: -499px;}
+      100% {margin-left: -375px;}
+    }
+    margin-left: -375px;
+  }
+  //ÓÒ±ßµÄÍ¼
+  .right_frame{
+    position: absolute;
+    width: 41%;
+    height: 561px;
+    overflow: hidden;
+    background: url("../../images/photo-frame01.png") no-repeat;
+    top: 68px;
+    right: 102px;
+    background-size: 100%;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  //ÓÒ±ßµÄÍ¼¶¯»­
+  .right_frame_ani{
+    @include animation(rightFrame 1s ease-in-out 1);
+    @include keyframes(rightFrame){
+      0%{top: -261px;background-size: 55%;transform: rotateX(-89deg) rotateY(0deg) rotateZ(-21deg);}
+      100% {top: 68px;background-size: 100%;transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);}
+    }
+    top: 68px;
+    background-size: 100%;
+    transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
+  }
+  //  ÓÒ±ßµÄ¹÷¹÷
+  .right_gun{
+    position: fixed;
+    bottom: 40%;
+    margin-right: -160px;
+    z-index: -99;
+    right:0;
+    img{
+      width: 104%;
+    }
+  }
+  //ÓÒ±ßµÄ¹÷¶¯»­
+  .gun_ani2{
+    @include animation(gun2 0.6s ease-in-out 1);
+    @include keyframes(gun2){
+      0%{margin-right: -160px;}
+      100% {margin-right: -35px;}
+    }
+    margin-right: -35px;
+  }
+  // ×óÍ¼ÓÒÒÆ Á½±ß×óÓÒÒÆ¶¯
+  .toRight{
+    @include animation(toRight 2s ease-in-out 1);
+    @include keyframes(toRight){
+      0%{left: -479px;opacity: 1;}
+      100% {left: -40px;opacity: 0;}
+    }
+    left: -40px;
+    opacity: 0;
+  }
+  // ×óÍ¼ÓÒÒÆ Á½±ß×óÓÒÒÆ¶¯
+  .toLeft{
+    @include animation(toLeft 2s ease-in-out 1);
+    @include keyframes(toLeft){
+      0%{right: 146px;}
+      100% {right: 573px;}
+    }
+    right: 573px;
+  }
+  //  ×ó¹÷ÒÆ³ý
+  .moveLeftGun{
+    @include animation(moveLeftGun 0.6s ease-in-out 1);
+    @include keyframes(moveLeftGun){
+      0%{margin-left: -336px;}
+      100% {margin-left: -499px;}
+    }
+    margin-left: -499px;
+  }
+  //  ÓÒ¹÷ÒÆ³ý
+  .moveRightGun{
+    @include animation(moveRightGun 0.6s ease-in-out 1);
+    @include keyframes(moveRightGun){
+      0%{margin-right: 0px;}
+      100% {margin-right: -160px;}
+    }
+    margin-right: -160px;
+  }
+  //  ÂÖ²¥Ñ¡Í·ÏñÍ¼
+  .select_pic{
+    position: relative;
+    top: 26px;
+    width: 61%;
+    height: 505px;
+    overflow: hidden;
+    background: url(../../images/pic-border2.png) no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    p{
+
+    }
+    img{
+      position: relative;
+      height: 369px;
+      left: 95px;
+      top: 91px;
+      width: 58%;
+      padding-bottom: 45px;
+    }
+  }
+  //Í¼Æ¬¹ö¶¯Ð§¹û
+  .tigerAni{
+    position: relative;
+    @include animation(coleList 100ms ease-in-out infinite);
+    @include keyframes(coleList){
+      0%{top: -66px;opacity: 0.6;}
+      100% {top:-766px;opacity: 0.8;}
+    }
+  }
+  //Ñ¡ÖÐÍ¼Æ¬ÓÒÒÆ
+  .show_info_pic{
+    @include animation(showInfoPic 0.8s ease-in-out 1);
+    @include keyframes(showInfoPic){
+      0%{left: 0px;}
+      100% {left: 183px;}
+    }
+    left: 183px;
+  }
+  //ÐÅÏ¢Õ¹Ê¾
+  .per_info{
+    position: absolute;
+    top: 80px;
+    left: 60px;
+    right: 0px;
+    bottom: 0px;
+    display: inline-block;
+    width: 324px;
+    height: 359px;
+    padding: 60px 0;
+    overflow: hidden;
+    transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
+    ul{
+      padding: 10px;
+
+      li{
+        font-size: 28px;
+        font-family: "Î¢ÈíÑÅºÚ";
+        color: #00ffff;
+        width: 100%;
+        text-indent: 20px;
+        line-height: 60px;
+        white-space: nowrap;
+        //overflow: hidden;
+        //text-overflow: ellipsis;
+        .point{
+          position: absolute;
+          width: 9px;
+          height: 9px;
+          margin-top: -35px;
+        }
+        span{
+          position: absolute;
+          padding-left: 10px;
+        }
+      }
+      li:last-child{
+        white-space: normal;
+        text-indent: 12px;
+        line-height: 35px;
+        .point{
+          margin-top: -20px;
+        }
+        span{
+          text-indent: 0px;
+        }
+      }
+    }
+  }
+}
