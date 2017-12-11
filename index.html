@@ -1,83 +1,125 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>人脸识别系统</title>
+    <link href="css/main.css" rel="stylesheet">
     <link rel="Stylesheet" type="text/css" href="css/scss/small.css">
     <link rel="stylesheet" media="screen and (min-width: 1920px)" type="text/css" href="css/scss/index.css" />
     <script src="jquery.js" onload="window.$ = window.jQuery = module.exports;"></script>
 </head>
+
 <body>
-<!--http://www.sensetime.com/static/web/video/banner1.mp4-->
-<!--加载轮播选头像图-->
-<script id="tplCole" type="text/template">
-    <%if(list&&list.length){%>
-    <%for(var i = 0; i < list.length; i++) {%>
-    <p><img src=<%=list[i].perImg%>></p>
-    <%}%>
-    <%}else{%>
-    <p><img src=<%=list[0].perImg%>></p>
-    <%}%>
-</script>
-<!--题目-->
-<div id="main_title">
-    <img class="light1" src="images/light.png">
-    <img class="title0_img" src="images/title-01.png">
-    <img class="light2" src="images/light.png">
-</div>
-<!--视频位置-->
-<div class="photo_frame">
-    <!--左边的图-->
-    <div class="left_frame">
-        <div class="photo_content">
-            <img class="light_face" src="images/light-face.png">
-            <video class="photo_video" autoplay="autoplay"></video>
-            <canvas class="photo_canvas"  id="photoCanvas">
-                Your browser does not support the HTML5 canvas tag.
-            </canvas>
-        </div>
+    <div class="close"></div>
+    <!--http://www.sensetime.com/static/web/video/banner1.mp4-->
+    <!--加载轮播选头像图-->
+    <script id="tplCole" type="text/template">
+        <%if(list&&list.length){%>
+            <%for(var i = 0; i < list.length; i++) {%>
+                <p>
+                    <img src=<%=list[i].perImg%>></p>
+                <%}%>
+                    <%}else{%>
+                        <p>
+                            <img src=<%=list[0].perImg%>></p>
+                        <%}%>
+    </script>
+    <!--题目-->
+    <div id="main_title">
+        <img class="light1" src="images/light.png">
+        <img class="title0_img" src="images/title-01.png">
+        <img class="light2" src="images/light.png">
     </div>
-    <!--左边的棍棍-->
-    <div class="left_gun">
-        <img src="images/left-gun.png">
-    </div>
-    <!--右边的图-->
-    <div class="right_frame opc">
-        <!--轮播选头像图-->
-        <div id="cole" class="select_pic">
-            <div id="cole1" class="hide">
-                <div id="coleList"></div>
+    <!--视频位置-->
+    <div class="photo_frame">
+        <!--左边的图-->
+        <div class="left_frame">
+            <div class="photo_content">
+                <img class="light_face" src="images/light-face.png">
+                <video class="photo_video" autoplay="autoplay"></video>
+                <canvas class="photo_canvas" id="photoCanvas">
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
             </div>
-            <div id="cole2"></div>
         </div>
-        <!-- 员工信息-->
-        <div class="per_info opc">
-            <img class="per_info_name" src="images/per-name.png">
-            <ul>
-                <li><img class="point" src="images/point.png">姓名:<span class="per_name"></span></li>
-                <li><img class="point" src="images/point.png">职务:<span class="per_duty"></span></li>
-                <li><img class="point" src="images/point.png">魅力值=<span class="per_usercp"></span></li>
-                <li><img class="point" src="images/point.png"><span class="per_company"></span></li>
-            </ul>
+        <!--左边的棍棍-->
+        <div class="left_gun">
+            <img src="images/left-gun.png">
+        </div>
+        <!--右边的图-->
+        <div class="right_frame opc">
+            <!--轮播选头像图-->
+            <div id="cole" class="select_pic">
+                <div id="cole1" class="hide">
+                    <div id="coleList"></div>
+                </div>
+                <div id="cole2"></div>
+            </div>
+            <!-- 员工信息-->
+            <div class="per_info opc">
+                <img class="per_info_name" src="images/per-name.png">
+                <ul>
+                    <li>
+                        <img class="point" src="images/point.png">姓名:
+                        <span class="per_name"></span>
+                    </li>
+                    <li>
+                        <img class="point" src="images/point.png">职务:
+                        <span class="per_duty"></span>
+                    </li>
+                    <li>
+                        <img class="point" src="images/point.png">魅力值=
+                        <span class="per_usercp"></span>
+                    </li>
+                    <li>
+                        <img class="point" src="images/point.png">
+                        <span class="per_company"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--右边的棍棍-->
+        <div class="right_gun hide">
+            <img src="images/right-gun.png">
         </div>
     </div>
-    <!--右边的棍棍-->
-    <div class="right_gun hide">
-        <img src="images/right-gun.png">
+    <!--提示文字-->
+    <div class="tips">
+        <div class="tips_success hide">
+            <img class="tips_img" src="images/tips-img-success.png">
+        </div>
+        <div class="tips_fail hide">
+            <span id="failMsg"></span>
+            <img class="tips_img" src="images/tips-img-fail2.png">
+        </div>
     </div>
-</div>
-<!--提示文字-->
-<div class="tips">
-    <div class="tips_success hide">
-        <img class="tips_img" src="images/tips-img-success.png">
-    </div>
-    <div class="tips_fail hide">
-        <span id="failMsg"></span>
-        <img class="tips_img" src="images/tips-img-fail2.png">
-    </div>
-</div>
-<script src="js/jquery-1.8.3.min.js"></script>
-<script src="js/underscore.js"></script>
-<script src="js/index.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        var closeEl = initCloseBtn();
+
+        function initCloseBtn() {
+            var closeEl = document.querySelector(".close");
+            if (closeEl) {
+                closeEl.addEventListener('click', function () {
+                    window.close();
+                });
+            };
+            return closeEl;
+        }
+
+        function onDocumentMouseDown(event) {
+            if (event.target == closeEl) return; // it should deliver click to close button
+
+            document.body.requestPointerLock =
+                document.body.requestPointerLock ||
+                document.body.mozRequestPointerLock ||
+                document.body.webkitRequestPointerLock;
+            document.body.requestPointerLock();
+        }
+    </script>
 </body>
+
 </html>
